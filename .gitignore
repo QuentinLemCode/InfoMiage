@@ -51,6 +51,5 @@ app/check.php
 app/SymfonyRequirements.php
 .idea/*
 .buildpath
-app/autoload.php
 .project
 .settings/
