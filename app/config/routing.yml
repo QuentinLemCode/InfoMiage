@@ -1,3 +1,7 @@
+info_miage_cms:
+    resource: "@InfoMiageCMSBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
