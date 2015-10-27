@@ -1,3 +1,3 @@
 info_miage_cms_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: InfoMiageCMSBundle:Default:index }
+    path: /
+    defaults: { _controller: 'InfoMiageCMSBundle:Default:index' }
