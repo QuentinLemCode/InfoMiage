@@ -1,3 +1,6 @@
-info_miage_app_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: InfoMiageAppBundle:Default:index }
+infomiage_app_home:
+    path:     /{page}
+    defaults: { _controller: InfoMiageAppBundle:App:index, page: 1 }
+    requirements: 
+        page: /d*
+
