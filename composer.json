@@ -23,7 +23,7 @@
 		"sonata-project/formatter-bundle" : "^2.3",
 		"sonata-project/doctrine-orm-admin-bundle" : "^2.3",
 		"zenside/sonata-image-bundle" : "@dev",
-		"jms/serializer-bundle": "^1.0"
+		"jms/serializer-bundle" : "^1.0"
 	},
 	"require-dev" : {
 		"sensio/generator-bundle" : "~2.3"
