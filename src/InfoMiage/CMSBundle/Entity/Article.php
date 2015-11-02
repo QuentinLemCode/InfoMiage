@@ -62,6 +62,15 @@ class Article
      * @ORM\JoinColumn(nullable=true, onDelete="set null")
      */
     private $image;
+    
+    /**
+     * Constructeur
+     */
+    public function __construct()
+    {
+    	$this->datecreation = new \DateTime();
+    	$this->datemodification = new \DateTime();
+    }
 
 
     /**

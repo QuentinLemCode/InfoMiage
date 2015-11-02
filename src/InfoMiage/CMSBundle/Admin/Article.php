@@ -12,7 +12,13 @@ class Article extends Admin
 {
 	protected function configureFormFields(FormMapper $formMapper)
 	{
-		$formMapper->add('titre', 'text');
+		$formMapper->with('Contenu', array('class' => 'col-md-9'))
+			->add('titre', 'text')
+			->add('contenu', 'textarea')
+		->end()
+		->with('Affichage', array('class' => 'col-md-3'))
+			->add('image', 'sonata_type_admin')
+		->end();
 	}
 	
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -22,7 +28,8 @@ class Article extends Admin
 	
 	protected function configureListFields(ListMapper $listMapper)
 	{
-		$listMapper->addIdentifier('titre');
+		$listMapper->addIdentifier('titre')
+		->addIdentifier('contenu');
 	}
 	
 	public function prePersist($subject)
@@ -32,5 +39,12 @@ class Article extends Admin
 	public function preUpdate($subject)
 	{
 		ImageAdmin::manageEmbeddedImageAdmins($this, $subject);
+	}
+	
+	public function toString($object)
+	{
+		return $object instanceof Article
+		? $object->getTitre()
+		: 'Article'; // Affiché dans le breadcrumb
 	}
 }
