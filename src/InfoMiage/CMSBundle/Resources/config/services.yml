@@ -1,0 +1,4 @@
+services:
+#    info_miage_cms.example:
+#        class: InfoMiage\CMSBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

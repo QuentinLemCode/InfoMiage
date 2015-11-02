@@ -17,6 +17,17 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new InfoMiage\AppBundle\InfoMiageAppBundle(),
+            new InfoMiage\CMSBundle\InfoMiageCMSBundle(),
+        	new Sonata\CoreBundle\SonataCoreBundle(),
+        	new Sonata\BlockBundle\SonataBlockBundle(),
+        	new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        	new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+        	new Sonata\AdminBundle\SonataAdminBundle(),
+        	new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+        	new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+        	new Sonata\FormatterBundle\SonataFormatterBundle(),
+        	new ZenSide\SonataImageBundle\ZenSideSonataImageBundle(),
+        	new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
