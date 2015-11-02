@@ -3,9 +3,25 @@
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
+                <source>default</source>
+                <target>defaut</target>
             </trans-unit>
+            <trans-unit id="2">
+            	<source>Delete</source>
+            	<target>Supprimer</target>
+        	</trans-unit>
+        	<trans-unit id="3">
+        		<source>Article List</source>
+        		<target>Liste des articles</target>
+    		</trans-unit>
+    		<trans-unit id="Dashboard">
+    			<source>Dashboard</source>
+    			<target>Tableau de bord</target>
+			</trans-unit>
+			<trans-unit id="label_export_download ">
+				<source>Export</source>
+				<target>Exporter</target>
+			</trans-unit>
         </body>
     </file>
 </xliff>
