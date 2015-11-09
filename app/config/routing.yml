@@ -1,5 +1,5 @@
 info_miage_cms:
-    resource: "@InfoMiageCMSBundle/Resources/config/routing.yml"
+    resource: "@InfoMiageAppBundle/Resources/config/routing.yml"
     prefix:   /
 
 admin_area:
