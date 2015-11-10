@@ -1,3 +1,28 @@
-info_miage_app:
-    resource: "@InfoMiageAppBundle/Resources/config/routing.yml"
-    prefix:   /
+gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /media/gallery
+
+media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /media
+
+sonata_page_exceptions:
+    resource: '@SonataPageBundle/Resources/config/routing/exceptions.xml'
+    prefix: /
+
+sonata_page_cache:
+    resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
+    prefix: /
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+sonata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin
