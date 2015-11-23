@@ -3,6 +3,14 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: ckeditor/ckeditor.yml }
+    - { resource: sonata/sonata_admin.yml }
+    - { resource: sonata/sonata_block.yml }
+    - { resource: sonata/sonata_formatter.yml }
+    - { resource: sonata/sonata_media.yml }
+    - { resource: sonata/sonata_news.yml }
+    - { resource: sonata/sonata_page.yml }
+    - { resource: sonata/sonata_seo.yml }
+    - { resource: sonata/sonata_user.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -124,58 +132,6 @@ sonata_cache:
         #    servers:
         #        - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
-# Configuration Sonata Block
-sonata_block:
-    default_contexts: [sonata_page_bundle]
-    context_manager: sonata.page.block.context_manager
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-
-        #sonata.admin_doctrine_orm.block.audit:
-        #    contexts:   [admin]
-
-        sonata.page.block.children_pages:
-        sonata.block.service.text:
-        sonata.block.service.rss:
-        sonata.formatter.block.formatter:
-
-        # Some specific block from the SonataMediaBundle
-        sonata.media.block.media:
-        sonata.media.block.gallery:
-        sonata.media.block.feature_media:
-        
-# Configuration Sonata Seo
-sonata_seo:
-    encoding:         UTF-8
-    page:
-        default: sonata.seo.page.default
-        title:            Sonata Project
-        metas:
-            name:
-                keywords:             foo bar
-                description:          The description
-                robots:               index, follow
-
-            property:
-                # Facebook application settings
-                #'fb:app_id':          XXXXXX
-                #'fb:admins':          admin1, admin2
-
-                # Open Graph information
-                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-                'og:site_name':       Sonata Project Sandbox
-                'og:description':     A demo of the some rich bundles for your Symfony2 projects
-
-            http-equiv:
-                'Content-Type':         text/html; charset=utf-8
-                #'X-Ua-Compatible':      IE=EmulateIE7
-
-        head:
-            'xmlns':              http://www.w3.org/1999/xhtml
-            'xmlns:og':           http://opengraphprotocol.org/schema/
-            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
-
 # Configuration Sonata Notification
 sonata_notification:
     backend: sonata.notification.backend.runtime
@@ -190,118 +146,10 @@ cmf_routing:
             sonata.page.router: 150
             router.default: 100
 
-# Configuration Sonata Pages
-sonata_page:
-    multisite: host
-    use_streamed_response: true # set the value to false in debug mode or if the reverse proxy does not handle streamed response
-    ignore_route_patterns:
-        - ^(.*)admin(.*)   # ignore admin route, ie route containing 'admin'
-        - ^_(.*)          # ignore symfony routes
-    ignore_routes:
-        - sonata_page_esi_cache
-        - sonata_page_ssi_cache
-        - sonata_page_js_sync_cache
-        - sonata_page_js_async_cache
-        - sonata_cache_esi
-        - sonata_cache_ssi
-        - sonata_cache_js_async
-        - sonata_cache_js_sync
-        - sonata_cache_apc
-
-    ignore_uri_patterns:
-        - ^/admin(.*)   # ignore admin route, ie route containing 'admin'
-
-    page_defaults:
-        homepage: {decorate: false} # disable decoration for homepage, key - is a page route
-    default_template: default # template key from templates section, used as default for pages
-    templates:
-        default: {path: 'SonataPageBundle::layout.html.twig', name: default }
-    # manage the http errors
-    catch_exceptions:
-        not_found: [404]    # render 404 page with "not_found" key (name generated: _page_internal_error_{key})
-        fatal:     [500]    # so you can use the same page for different http errors or specify specific page for each error
-
 # Configuration KNP Menu
 knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by default
-
-sonata_user:
-    security_acl: true
-    manager_type: orm # can be orm or mongodb
-
-fos_user:
-    db_driver:      orm # can be orm or odm
-    firewall_name:  main
-    user_class:     Application\Sonata\UserBundle\Entity\User
-    group:
-        group_class: Application\Sonata\UserBundle\Entity\Group
-sonata_media:
-    default_context: default
-    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
-    contexts:
-        default:  # the default context is mandatory
-            providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-                - sonata.media.provider.file
-
-            formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
-
-    cdn:
-        server:
-            path: /uploads/media # http://media.sonata-project.org/
-
-    filesystem:
-        local:
-            directory:  "%kernel.root_dir%/../web/uploads/media"
-            create:     false
-
-sonata_formatter:
-    formatters:
-        markdown:
-            service: sonata.formatter.text.markdown
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        text:
-            service: sonata.formatter.text.text
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        rawhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        richhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        twig:
-            service: sonata.formatter.text.twigengine
-            extensions: [] # Twig formatter cannot have extensions
-    ckeditor:
-        templates:
-            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
-            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
             
-sonata_admin:
-    title: InfoMiage Administration
-    templates:
-        # default global templates
-        layout:  SonataAdminBundle::layout.html.twig

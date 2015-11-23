@@ -1,0 +1,21 @@
+# Configuration Sonata Block
+sonata_block:
+    default_contexts: [sonata_page_bundle]
+    context_manager: sonata.page.block.context_manager
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.page.block.children_pages:
+        sonata.block.service.text:
+        sonata.block.service.rss:
+        sonata.formatter.block.formatter:
+
+        # Some specific block from the SonataMediaBundle
+        sonata.media.block.media:
+        sonata.media.block.gallery:
+        sonata.media.block.feature_media:
+        
