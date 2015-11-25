@@ -19,3 +19,10 @@ sonata_block:
         sonata.media.block.gallery:
         sonata.media.block.feature_media:
         
+        sonata.block.service.menu:
+        sonata.page.block.breadcrumb:
+        
+        sonata.news.block.recent_comments:
+        sonata.news.block.recent_posts:
+        
+        
