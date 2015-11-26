@@ -43,6 +43,7 @@ class AppKernel extends Kernel
         	new Sonata\IntlBundle\SonataIntlBundle(),
         	new Sonata\NewsBundle\SonataNewsBundle(),
         	new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new InfoMiage\AppBundle\InfoMiageAppBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

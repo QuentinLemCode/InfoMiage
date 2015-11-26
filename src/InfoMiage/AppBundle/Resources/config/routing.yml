@@ -1,0 +1,11 @@
+infomiage_app_home:
+    path:     /{page}
+    defaults: { _controller: InfoMiageAppBundle:App:index, page: 1 }
+    requirements: 
+        page: /d*
+
+infomiage_app_article:
+    path:     /{id}
+    defaults: { _controller: InfoMiageAppBundle:App:article }
+    requirements:
+        id: /d+
