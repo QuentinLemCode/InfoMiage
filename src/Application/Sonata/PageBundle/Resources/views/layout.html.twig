@@ -19,11 +19,9 @@ Puis reprendre les blocks
 
             {% block sonata_page_breadcrumb %}
                 <div class="row">
-                <h2>Faut modifier pour enlever ce breadcrumb</h2>
                     {% if sonata_seo_context is not defined %}
-                        {% set sonata_seo_context = 'homepage' %}
+                        {% set sonata_seo_context = 'Accueil' %}
                     {% endif %}
-                    {{ sonata_block_render_event('breadcrumb', { 'context': sonata_seo_context, 'current_uri': app.request.requestUri }) }}
                 </div>
             {% endblock %}
 
