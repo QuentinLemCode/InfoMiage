@@ -23,7 +23,53 @@ sonata_page:
         homepage: {decorate: false} # disable decoration for homepage, key - is a page route
     default_template: default # template key from templates section, used as default for pages
     templates:
-        default: {path: 'InfoMiageAppBundle::layout.html.twig', name: default }
+        default:
+            path: 'InfoMiageAppBundle::layout.html.twig'
+            name: Defaut
+            containers:
+                 header:
+                     name: Header
+                 content_top:
+                     name: Top content
+                 content:
+                     name: Contenu principal
+                 content_bottom:
+                     name: Bottom content
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                 
+                     HHHHHHHH
+                     TTTTBBBB
+                     TTTTBBBB
+                     TTTTBBBB
+                     TTTTBBBB
+                     CCCCCCCC
+                     CCCCCCCC
+                     FFFFFFFF
+                     
+                 mapping:
+                     H: header
+                     T: content_top
+                     C: content
+                     B: content_bottom
+                     F: footer
+                     
+    assets:
+        stylesheets:
+            - bundles/infomiageapp/css/bootstrap.min.css
+            - bundles/infomiageapp/css/modern-business.css
+            - bundles/infomiageapp/font-awesome/css/font-awesome.min.css
+            - bundles/infomiageapp/css/style.css
+
+        javascripts:
+            - bundles/sonataadmin/vendor/jquery/dist/jquery.js
+            - bundles/infomiageapp/js/bootstrap.min.js
+            - bundles/sonatacore/js/base.js
+            - bundles/sonatacore/vendor/select2/select2.min.js
+            
+        
     # manage the http errors
     catch_exceptions:
         not_found: [404]    # render 404 page with "not_found" key (name generated: _page_internal_error_{key})
