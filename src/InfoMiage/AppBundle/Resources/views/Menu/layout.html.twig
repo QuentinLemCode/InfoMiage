@@ -1,0 +1,56 @@
+
+{% extends 'knp_menu.html.twig' %}
+
+{% block root %}
+{% set isTopMenu = true %}{# ('topmenu' === item.extra('menu_type')) %} #}
+{% if isTopMenu %}
+<nav class="top-bar important-class" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <p id="titre"><img src="{{ asset('img/titre.png') }}" alt="titre" id="logo-image"> Corsaire </p>             
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+{% endif %}
+{{ parent() }}
+{% if isTopMenu %}
+        </section>
+    </nav>
+{% endif %}
+{% endblock %}
+
+{% block list %}
+    {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
+        {% if item.level > 0 %}
+            {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' dropdown')|trim}) %}
+        {% endif %}
+        {% if item.extra('menu_type') == 'sidebar' %}
+            {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' side-nav')|trim}) %}
+        {% endif %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block item %}
+    {% if item.displayed %}
+        {# Building the class of the item #}
+        {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
+        {%- if matcher.isCurrent(item) %}
+            {%- set classes = classes|merge([options.currentClass]) %}
+        {%- elseif matcher.isAncestor(item, options.matchingDepth) %}
+            {%- set classes = classes|merge([options.ancestorClass]) %}
+        {%- endif %}
+        {%- if item.actsLikeFirst %}
+            {%- set classes = classes|merge([options.firstClass]) %}
+        {%- endif %}
+        {%- if item.actsLikeLast %}
+            {%- set classes = classes|merge([options.lastClass]) %}
+        {%- endif %}
+
+        {# Mark item as "leaf" (no children) or as "branch" (has children that are displayed) #}
+        {% if item.hasChildren and options.depth is not sameas(0) %}
+            {% set options = options|merge({'branch_class': ('has-dropdown ' ~ options.branch_class|default(''))|trim }) %}
+            {% if options.branch_class is not empty and item.displayChildren %}
+                {%- set classes = classes|merge([options.branch_class]) %}
+            {% endif %}
