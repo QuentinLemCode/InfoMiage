@@ -77,7 +77,15 @@ doctrine:
                     SonataNotificationBundle: ~
                     ApplicationSonataNotificationBundle: ~
                     SonataClassificationBundle: ~
-                    ApplicationSonataClassificationBundle: ~   
+                    ApplicationSonataClassificationBundle: ~
+                    SonataPageBundle: ~
+                    ApplicationSonataPageBundle: ~
+                    SonataMediaBundle: ~
+                    ApplicationSonataMediaBundle: ~
+                    SonataNewsBundle: ~
+                    ApplicationSonataNewsBundle: ~
+                    SonataUserBundle: ~
+                    ApplicationSonataUserBundle: ~
                 naming_strategy: doctrine.orm.naming_strategy.underscore
                 auto_mapping: true
 
