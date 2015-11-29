@@ -42,6 +42,7 @@
                     <i class="fa fa-comments-o"></i>
                     <span class="sonata-blog-post-comments-count">{{ 'comments_count'|trans({'%comments_count%': post.commentsCount }, 'SonataNewsBundle') }}</span>
                 </p>
+                
                 <hr>
                 
                 {#
@@ -58,17 +59,21 @@
                     {% endfor %}
                 </div>
                 #}
-                {% media post.image, 'wide' %}
+                <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">
+                    {% media post.image, 'wide' with {'class': 'img-responsive img-hover'} %}
+                </a>
 
+                <hr>
 
             </header>
 
-            <div class="sonata-blog-post-abtract">
+            <p>
                 {{ post.abstract }}
-            </div>
+            </p>
+            <a class="btn btn-primary" href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">Lire l'article <i class="fa fa-angle-right"></i></a>
+            <hr>
         </div>
 
-        <hr />
     {% else %}
         {{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}
     {% endfor %}
