@@ -1,0 +1,58 @@
+<div class="sonata-blog-post-list">
+    {% for post in pager.getResults() %}
+        <div class="col-md-12">
+            <header>
+                <h2>
+                    <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a>
+                </h2>
+
+                <p class="lead">
+                    {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}
+                </p>
+                <p><i class="fa fa-clock-o"></i>
+                    {{ post.publicationDateStart | format_date }} |
+
+                    <i class="fa fa-comments-o"></i>
+                    <span class="sonata-blog-post-comments-count">{{ 'comments_count'|trans({'%comments_count%': post.commentsCount }, 'SonataNewsBundle') }}</span>
+                </p>
+                
+                <hr>
+                
+                {#
+                <div class="sonata-blog-post-tags">
+                    {% if post.tags|length > 1 %}
+                        <i class="icon-tags"></i>
+                    {% else %}
+                        <i class="icon-tag"></i>
+                    {% endif %}
+                    {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
+
+                    {% for tag in post.tags %}
+                        <a href="{{ url('sonata_news_tag', { 'tag': tag.slug } ) }}">{{ tag.name }}</a>{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </div>
+                #}
+                <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">
+                    {% media post.image, 'wide' with {'class': 'img-responsive img-hover'} %}
+                </a>
+
+                <hr>
+
+            </header>
+
+            <p>
+                {{ post.abstract }}
+            </p>
+            <a class="btn btn-primary" href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">Lire l'article <i class="fa fa-angle-right"></i></a>
+            <hr>
+        </div>
+
+    {% else %}
+        {{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}
+    {% endfor %}
+
+    <ul class="pager">
+        <li{% if pager.page == pager.lastPage %} class="disabled"{% endif %}><a href="{{ url(route, route_parameters|merge({'page': pager.nextpage})) }}" title="{{ 'link_previous_page'|trans({}, 'SonataNewsBundle') }}">{{ 'link_previous_page'|trans({}, 'SonataNewsBundle') }}</a>
+        <li{% if pager.page == pager.firstPage %} class="disabled"{% endif %}><a href="{{ url(route, route_parameters|merge({'page': pager.previouspage})) }}" title="{{ 'link_next_page'|trans({}, 'SonataNewsBundle') }}">{{ 'link_next_page'|trans({}, 'SonataNewsBundle') }}</a></li>
+    </ul>
+</div>
