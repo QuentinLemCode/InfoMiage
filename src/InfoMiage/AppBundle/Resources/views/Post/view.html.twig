@@ -13,21 +13,25 @@
 
 	
 	
-	
-<div class="row">
+<div class="container">	
+	<div class="row">
             <div class="col-lg-12">
                  <h1 class="sonata-blog-post-title">
             <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a>
             <span class="sonata-blog-post-author">{{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}</span>
-        </h1>
-	<hr>
-{% block sonata_page_breadcrumb %}
-    <div class="row-fluid clearfix">
-        {{ sonata_block_render_event('breadcrumb', { 'context': 'news_post', 'post': post, 'current_uri': app.request.requestUri }) }}
-    </div>
-{% endblock %}
-</div>
-<div class="col-md-12">
+				</h1>
+			</div>
+	</div>	
+	<div class="row">
+		<div class="col-lg-8">
+			<hr>
+		{% block sonata_page_breadcrumb %}
+			<div class="row-fluid clearfix">
+				{{ sonata_block_render_event('breadcrumb', { 'context': 'news_post', 'post': post, 'current_uri': app.request.requestUri }) }}
+			</div>
+		{% endblock %}
+		</div>
+	<div class="col-md-12">
 
 	<hr>
     <header>
@@ -76,4 +80,5 @@
             {{ 'message_comments_are_closed'|trans({}, 'SonataNewsBundle') }}
         </div>
     {% endif %}
+	</div>
 </div>
