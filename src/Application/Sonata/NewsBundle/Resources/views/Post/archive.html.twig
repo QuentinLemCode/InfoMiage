@@ -13,44 +13,53 @@
 
 {% sonata_template_box 'This is the archive template. Feel free to override it.' %}
 
+{#
 {% block sonata_page_breadcrumb %}
     <div class="row-fluid clearfix">
         {{ sonata_block_render_event('breadcrumb', { 'context': 'news_archive', 'collection': collection, 'tag': tag, 'current_uri': app.request.requestUri }) }}
     </div>
 {% endblock %}
+
 <h2>Template a modifier</h2>
 <h1>{{ 'title_archive'|trans({}, 'SonataNewsBundle') }}</h1>
+#}
 
-<div class="sonata-blog-post-list">
+<div class="    sonata-blog-post-list">
     {% for post in pager.getResults() %}
-        <div class="sonata-blog-post-container">
+        <div class="col-md-12">
             <header>
-                <h2 class="sonata-blog-post-title">
+                <h2>
                     <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a>
                 </h2>
 
-                <div class="sonata-blog-post-information">
-                    <span class="sonata-blog-post-author">{{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}</span> |
-
-                    <i class="icon-calendar"></i>
+                <p class="lead">
+                    {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}
+                </p>
+                <p><i class="fa fa-clock-o"></i>
                     {{ post.publicationDateStart | format_date }} |
 
-                    <i class="icon-comment"></i>
+                    <i class="fa fa-comments-o"></i>
                     <span class="sonata-blog-post-comments-count">{{ 'comments_count'|trans({'%comments_count%': post.commentsCount }, 'SonataNewsBundle') }}</span>
+                </p>
+                <hr>
+                
+                {#
+                <div class="sonata-blog-post-tags">
+                    {% if post.tags|length > 1 %}
+                        <i class="icon-tags"></i>
+                    {% else %}
+                        <i class="icon-tag"></i>
+                    {% endif %}
+                    {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
 
-                    <div class="sonata-blog-post-tags">
-                        {% if post.tags|length > 1 %}
-                            <i class="icon-tags"></i>
-                        {% else %}
-                            <i class="icon-tag"></i>
-                        {% endif %}
-                        {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
-
-                        {% for tag in post.tags %}
-                            <a href="{{ url('sonata_news_tag', { 'tag': tag.slug } ) }}">{{ tag.name }}</a>{% if not loop.last %},{% endif %}
-                        {% endfor %}
-                    </div>
+                    {% for tag in post.tags %}
+                        <a href="{{ url('sonata_news_tag', { 'tag': tag.slug } ) }}">{{ tag.name }}</a>{% if not loop.last %},{% endif %}
+                    {% endfor %}
                 </div>
+                #}
+                {% media post.image, 'wide' %}
+
+
             </header>
 
             <div class="sonata-blog-post-abtract">
