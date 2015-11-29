@@ -19,21 +19,23 @@
     </div>
 {% endblock %}
 
-<article class="sonata-blog-post-container">
+<div class="col-md-12">
+
+	<hr>
     <header>
         <div class="sonata-blog-post-date-container">
             <h5>
-                <i class="icon-calendar"></i>
-                {{ post.publicationDateStart | format_date }}
+                <i class="fa fa-clock-o"></i>
+                Posté le {{ post.publicationDateStart | format_date }}
             </h5>
         </div>
-
+	<hr>
         <h1 class="sonata-blog-post-title">
             <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a>
             <span class="sonata-blog-post-author">{{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}</span>
         </h1>
-
-        <div class="sonata-blog-post-information">
+		<!-- Pas de prise en compte des tags pour le moment -->
+       <!--  <div class="sonata-blog-post-information">
             <div class="sonata-blog-post-tag-container">
                 <div class="sonata-blog-post-tag-title">
                     {% if post.tags|length > 1 %}
@@ -49,11 +51,11 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
+        </div> -->
     </header>
 
     <div class="sonata-blog-post-content">
-        {% media post.image, 'wide' %}
+        {% media post.image, 'wide' with {'class' : 'img-responsive img-hover'} %}
         {{ post.content|raw }}
     </div>
 
@@ -69,4 +71,4 @@
             {{ 'message_comments_are_closed'|trans({}, 'SonataNewsBundle') }}
         </div>
     {% endif %}
-</article>
+</div>
