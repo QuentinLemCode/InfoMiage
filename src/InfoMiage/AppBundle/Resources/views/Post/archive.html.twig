@@ -1,31 +1,4 @@
-{#
-
-/*
- * This file is part of the Sonata package.
- *
- * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-#}
-
-{% sonata_template_box 'This is the archive template. Feel free to override it.' %}
-
-{#
-{% block sonata_page_breadcrumb %}
-    <div class="row-fluid clearfix">
-        {{ sonata_block_render_event('breadcrumb', { 'context': 'news_archive', 'collection': collection, 'tag': tag, 'current_uri': app.request.requestUri }) }}
-    </div>
-{% endblock %}
-
-<h2>Template a modifier pour commencer</h2>
-
-<h1>{{ 'title_archive'|trans({}, 'SonataNewsBundle') }}</h1>
-#}
-
-<div class="    sonata-blog-post-list">
+<div class="sonata-blog-post-list">
     {% for post in pager.getResults() %}
         <div class="col-md-12">
             <header>
