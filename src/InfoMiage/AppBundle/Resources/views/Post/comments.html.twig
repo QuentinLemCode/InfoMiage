@@ -16,17 +16,20 @@
 
     <ul class="sonata-blog-comment-list">
         {% for comment in pager.results %}
-            <li class="sonata-blog-comment">
-                <div class="sonata-blog-comment-name">
-                    <a href="{{ comment.url }}" target="new" rel="nofollow">{{ comment.name }}</a>
+            <div class="media">
+                <a class="pull-left">
+                        <img class="media-object" src="{{ asset('bundles/infomiageapp/images/mystery-man-avatar.png')  }}" alt="">
+                    </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="{{ comment.url }}" target="new" rel="nofollow">{{ comment.name }}</a>
+                        <small>{{ comment.createdAt | format_date }}</small>
+                    </h4>
+                    <div class="sonata-blog-comment-message">
+                        {{ comment.message }}
+                    </div>
                 </div>
-                <div class="sonata-blog-comment-date">
-                    {{ comment.createdAt | format_date }}
-                </div>
-                <div class="sonata-blog-comment-message">
-                    {{ comment.message }}
-                </div>
-            </li>
+            </div>
         {% else %}
             <li>{{ 'no_comments_available'|trans({}, 'SonataNewsBundle') }}</li>
         {% endfor %}
